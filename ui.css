@@ -1,0 +1,66 @@
+.swiper-button-prev {
+    width: 50px;
+    height: 290px;
+    background: url(pool/arrowleft.png) no-repeat;
+    background-size: contain;
+	
+}
+.swiper-button-next {
+    width: 50px;
+    height: 290px;
+    background: url(pool/arrowright.png) no-repeat;
+    background-size: contain;
+}
+
+button#btn-buy-518 {
+background-color: rgb(33,41,68);
+border:none;
+}
+
+button#btn-buy-5180 {
+background-color:rgb(33,41,68);
+border:none;
+}
+
+
+
+.container .row {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+button#btn-draw-once {
+    background: url('../img/ui/summon1.png');
+    width:250px;
+    height:60px;
+    padding: 2px;
+}
+
+button#btn-draw-timesten {
+    background: url('../img/ui/summon10.png');
+    width:250px;
+    height:50px;
+    padding: 2px;
+}
+
+div#hun_xin_box {
+    display: block;
+    position: absolute;
+    width: 150px;
+    height: 44px;
+    left: 208px;
+    top: -5px;
+    background-color: #999;
+    border: 1px solid #233;
+}
+
+.fit {
+  max-width:100%;
+  max-height:100%;
+}
+
+.padimage {
+  padding: 2px;
+  width: 8.5rem;
+  height: 8.5rem;
+}

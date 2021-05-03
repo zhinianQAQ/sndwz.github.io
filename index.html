@@ -1,0 +1,332 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>少女的王座抽卡模拟器</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="c1.css" />
+        <link rel="stylesheet" href="ui.css" />
+    </head>
+    <body>
+	
+        <div class="container">
+            <div class="row" align="center">
+                <div class="center"><font color=white><h2>少女的王座抽卡模拟器</h2>
+				by:少女的王座战略指挥部
+				</div>
+				<body background="pool/bg-news.png">
+            </div>
+			
+		
+
+            <div class="row" align="center">
+                <div id="carousel-switch" class="carousel slide" data-interval="false" data-ride="carousel" >
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-switch" data-slide-to="0" class="active"></li>
+                         <!--  <li data-target="#carousel-switch" data-slide-to="1"></li>
+                        <li data-target="#carousel-switch" data-slide-to="2"></li>-->
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                         <div class="carousel-inner" role="listbox" class="fit">
+                        <div class="fit item active" data-pool="event_20160411">
+                            <img src="pool/pool1.png" alt="普通池" />
+                            <input class="carousel-item-id" type="hidden" value="0" />
+                        </div>
+
+                       <!--    <div class="item" data-pool="event_summer_1" class="fit">
+                            <img src="pool/1.jpg" alt="1" />
+                            <input class="carousel-item-id" type="hidden" value="1" />
+                        </div>
+
+                        <div class="item" data-pool="event_summer_2" class="fit">
+                            <img src="pool/2.jpg" alt="2" />
+                            <input class="carousel-item-id" type="hidden" value="2" />
+                        </div>-->
+                 
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="carousel-control left" href="#carousel-switch" role="button" data-slide="prev">
+                        <span>
+                            
+                       
+                        <span class="sr-only">上一个</span>
+                    </a>
+                    <a class="carousel-control right" href="#carousel-switch" role="button" data-slide="next">
+                        <span>
+                      
+                        <span class="sr-only">下一个</span>
+                    </a>
+                </div>
+            </div>
+
+			<!--氪金-->
+            <div class="row"  align="center">
+                <div class="col-md-4">
+                    <img id="ico_saint_quartz" src="pool/111.png" width="32" height="32" />
+                    <span id="saint_quartz"></span>
+                    <div id="tooltip" class="tip"></div>
+                    <div id="saint_quartz_box" style="display: none">
+                        水晶：<span id="saint_quartz_free"></span><br/>
+                        水晶：<span id="saint_quartz_premium"></span>
+                    </div>
+                </div>
+                <div class="col-md-2"><button id="btn-buy-518"><img id="btn-buy-518" 
+				src="pool/648.png" width="195" height="46" ></button></div>
+                <div class="col-md-4"><button id="btn-buy-5180"><img id="btn-buy-5180" src="pool/6480.png" width="195" height="46"></button></div>
+                <div class="col-md-4">一共花费了¥<span id="rmb_cost"></span></div>
+            </div>
+
+
+            <div class="row"  align="center">
+                <div class="col-lg-12" align="center">
+                    <canvas id="cards-canvas" width="1200" height="600" class="fit">
+                        当前浏览器不支持&lt;canvas&gt;标签
+                    </canvas>
+                </div>
+            </div>
+
+
+			<!--抽卡-->
+			<!-- <div class="col-md-3"><button id="btn-" class="btn btn-default">召唤一次</button></div> <div class="col-md-3"></div>-->
+            <div class="row"  align="center">
+
+				<div class="center"><button id="btn-draw-once"  class="btn "><img id="btn-draw-once" 
+			    src="pool/2.png" width="246" height="63"></button></div></div>
+			<div class="row"  align="center">
+				<div class="center"><button id="btn-draw-timesten" class="btn "><img id="btn-draw-once" src="pool/1.png" width="246" height="63"></button></div></div>
+
+            <div class="row"  align="center">
+                <div class="col-md-12"></div>
+            </div>
+
+            <div class="panel panel-info">
+                <div class="panel-body"><font color=black>
+                    <span id="tag-history">抽取次数：<span id="summon_counter"></span></span>
+                    <button id="btn-history-clear" class="btn btn-warning pull-right">清空历史纪录</button>
+                </div>
+            </div>
+
+             <div class="panel panel-default">
+                <div class="panel-heading">SSR衣服<span id="p_servant_ssr"></span></div>
+                <div class="panel-body" id="servant_ssr_list">
+                </div>
+            </div>
+           <div class="panel panel-default">
+                <div class="panel-heading">SSR配饰<span id="p_craft_essence_ssr"></span></div>
+                <div class="panel-body" id="craft_essence_ssr_list">
+                </div>
+            </div>
+           <div class="panel panel-default">
+                <div class="panel-heading">SR衣服<span id="p_servant_sr"></span></div>
+                <div class="panel-body" id="servant_sr_list">
+                </div>
+            </div>
+             <!--  <div class="panel panel-default">
+                <div class="panel-heading">SR配饰<span id="p_craft_essence_sr"></span></div>
+                <div class="panel-body" id="craft_essence_sr_list">
+                </div>
+            </div> -->
+            </div>
+
+       <div class="row">
+                <img id="background" src="pool/0.png" style="display:none"/>
+            </div>
+        </div>
+	
+          <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/data.js"></script>
+        <script type="text/javascript" src="js/core.js"></script>
+        <script type="text/javascript" src="js/drawing.js"></script>
+
+
+
+        <script type="text/javascript">
+            function updateProbability() {
+                var rate;
+
+                if (window.summonCounter > 0)
+                {
+                    rate = 100 * $('#servant_ssr_list').children().length / window.summonCounter;
+                    $('span#p_servant_ssr').text("（出货率：" + rate + "%）");
+                  rate = 100 * $('#servant_sr_list').children().length / window.summonCounter;
+                    $('span#p_servant_sr').text("（出货率：" + rate + "%）");
+                    rate = 100 * $('#servant_r_list').children().length / window.summonCounter;
+                    $('span#p_servant_r').text("（出货率：" + rate + "%）");
+
+					rate = 100 * $('#craft_essence_ssr_list').children().length / window.summonCounter;
+                    $('span#p_craft_essence_ssr').text("（出货率：" + rate + "%）");
+					rate = 100 * $('#craft_essence_sr_list').children().length / window.summonCounter;
+                    $('span#p_craft_essence_sr').text("（出货率：" + rate + "%）");
+					rate = 100 * $('#craft_essence_r_list').children().length / window.summonCounter;
+                    $('span#p_craft_essence_r').text("（出货率：" + rate + "%）");
+					
+                }
+                else//衣服单独算，其余算礼装
+                {
+                    $('span#p_servant_ssr').text("");
+                   $('span#p_servant_sr').text("");
+                    $('span#p_servant_r').text("");
+
+					$('span#p_craft_essence_ssr').text("");
+                    $('span#p_craft_essence_sr').text("");
+					$('span#p_craft_essence_r').text("");
+                }
+            }
+
+
+            function updateSaintQuartz() {
+                $('span#saint_quartz_free').text(window.window.saintQuartzFree);
+                $('span#saint_quartz_premium').text(window.window.saintQuartzPremium);
+                $('span#saint_quartz').text(window.window.saintQuartzFree + window.window.saintQuartzPremium);
+            }
+
+            function costSaintQuartz(amount) {
+                if (window.window.saintQuartzFree + window.window.saintQuartzPremium < amount)
+                    return false;
+                var freeSaintQuartzLeft = window.window.saintQuartzFree - amount;
+                if (freeSaintQuartzLeft >= 0)
+                {
+                    window.window.saintQuartzFree = freeSaintQuartzLeft;
+                }
+                else
+                {
+                    window.window.saintQuartzFree = 0;
+                    window.window.saintQuartzPremium += freeSaintQuartzLeft;
+                }
+                updateSaintQuartz();
+                return true;
+            }
+
+            $('#btn-buy-518').click(function() {
+                //window.saintQuartz += 1600;
+               window.saintQuartzFree +=1600;
+                window.saintQuartzPremium += 6480;
+                // $('span#saint_quartz').text(window.saintQuartz);
+                updateSaintQuartz();
+
+                window.rmbCost += 648;
+                $('span#rmb_cost').text(window.rmbCost);
+            });
+
+            $('#btn-buy-5180').click(function() {
+                // window.saintQuartz += 1400;
+               window.saintQuartzFree += 16000;
+                window.saintQuartzPremium += 64800;
+                // $('span#saint_quartz').text(window.saintQuartz);
+                updateSaintQuartz();
+
+                window.rmbCost += 6480;
+                $('span#rmb_cost').text(window.rmbCost);
+            });
+
+            $('#btn-draw-once').click(function(){
+                // if (window.saintQuartz < 3) {
+                //     alert("不足！");
+                //     return;
+                // }
+                // window.saintQuartz -= 3;
+                //$('span#saint_quartz').text(window.saintQuartz);
+                var result = costSaintQuartz(298);
+                if (!result) {
+                    alert("亲爱的公主殿下，您的幻水晶余额已不足以进行抽卡仪式！请您进行氪金充值后，再尝试进行抽卡仪式~");
+                    return;
+                }
+
+                window.summonCounter += 1;
+                $('span#summon_counter').text(window.summonCounter);
+
+                var card = summon(window.pool);
+                drawOnce(card);
+
+                updateProbability();
+            });
+
+            $('#btn-draw-timesten').click(function(){
+                // if (window.saintQuartz < 30) {
+                //     alert("不足！");
+                //     return;
+                // }
+                // window.saintQuartz -= 30;
+                // $('span#saint_quartz').text(window.saintQuartz);
+                var result = costSaintQuartz(1490);
+                if (!result) {
+                    alert("亲爱的公主殿下，您的幻水晶余额已不足以进行抽卡仪式！请您进行氪金充值后，再尝试进行抽卡仪式~");
+                    return;
+                }
+
+                window.summonCounter += 10;
+                $('span#summon_counter').text(window.summonCounter);
+
+                var cards = summon10combo(window.pool);
+
+                for (var i=0; i<cards.length; i++)
+                {
+                    var x = Math.floor(i % 6);
+                    var y = Math.floor(i / 6);
+                    if (y == 1) x += 1;
+                    var card = cards[i];
+                    drawCombo(card, x, y);
+                }
+
+                updateProbability();
+            });
+
+            $('#btn-history-clear').click(function(){
+                window.summonCounter = 0;
+                $('#servant_ssr_list').empty();
+                $('#servant_sr_list').empty();
+                $('#servant_r_list').empty();
+				$('#craft_essence_ssr_list').empty();
+                $('#craft_essence_sr_list').empty();
+				$('#craft_essence_r_list').empty();
+                $('span#summon_counter').text(window.summonCounter);
+                updateProbability();
+            });
+
+            //hover某处显示悬浮框
+            $("#ico_saint_quartz").mouseover(function(e){
+                $('#saint_quartz_free').text(window.saintQuartzFree);
+                $('#saint_quartz_premium').text(window.saintQuartzPremium);
+                $('#saint_quartz_box').css("display", "block");
+            });
+
+            //鼠标离开表格隐藏悬浮框
+            $("#ico_saint_quartz").mouseout(function(){
+                $('#saint_quartz_box').css("display", "none");
+            });
+
+            $('#carousel-switch').on('slid.bs.carousel', function (event) {
+                var poolName = $('div.item.active').data('pool');
+                window.pool = data.pools[poolName];
+            });
+
+           $().ready(function(){
+                var c = $("canvas#cards-canvas")[0];
+                var ctx = c.getContext("2d");
+                window.imgBg = new Image();
+                window.imgBg.src = "pool/0.png";
+                window.summonCounter = 0;
+                // window.saintQuartz = 0
+                window.saintQuartzFree = 0;
+                window.saintQuartzPremium = 0;
+                window.rmbCost = 0;
+                window.pool = data.pools.event_20160411;
+                $('img#banner').attr('src', window.pool.banner);
+
+                // $('span#saint_quartz').text(window.saintQuartz);
+                updateSaintQuartz();
+
+                imgBg.onload = function() {
+                    ctx.drawImage(window.imgBg, 0, 0);
+                }
+            });       
+        </script>
+    </body>
+</html>     
+
+            
+       
